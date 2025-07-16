@@ -1,0 +1,26 @@
+{
+  "category.mcc-island-enhanced.general": "MCC Island Enhanced",
+  "key.mcc-island-enhanced.toggle_mod": "Toggle Mod",
+  "key.mcc-island-enhanced.ping": "Ping",
+  "key.mcc-island-enhanced.quick_config": "Quick Config",
+  "key.mcc-island-enhanced.toggle_modules": "Toggle Modules",
+  "key.mcc-island-enhanced.emergency_disable": "Emergency Disable",
+  "key.mcc-island-enhanced.toggle_particles": "Toggle Particles",
+  
+  "text.autoconfig.mcc-island-enhanced.title": "MCC Island Enhanced Configuration",
+  "text.autoconfig.mcc-island-enhanced.category.general": "General Settings",
+  "text.autoconfig.mcc-island-enhanced.category.nametags": "Name Tags",
+  "text.autoconfig.mcc-island-enhanced.category.ping": "Ping System",
+  "text.autoconfig.mcc-island-enhanced.category.particles": "Particle Optimization",
+  "text.autoconfig.mcc-island-enhanced.category.skybattle": "Sky Battle",
+  "text.autoconfig.mcc-island-enhanced.category.battlebox": "Battle Box",
+  "text.autoconfig.mcc-island-enhanced.category.tgttos": "TGTTOS",
+  "text.autoconfig.mcc-island-enhanced.category.hud": "HUD Settings",
+  
+  "text.mcc-island-enhanced.mod_enabled": "Mod Enabled",
+  "text.mcc-island-enhanced.mod_disabled": "Mod Disabled",
+  "text.mcc-island-enhanced.profile_changed": "Profile changed to %s",
+  "text.mcc-island-enhanced.feature_enabled": "%s enabled",
+  "text.mcc-island-enhanced.feature_disabled": "%s disabled",
+  "text.mcc-island-enhanced.emergency_disable": "MCC Island Enhanced emergency disabled!"
+}

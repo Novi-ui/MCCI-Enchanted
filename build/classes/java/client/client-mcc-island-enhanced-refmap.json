@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "com/mccisland/enhanced/mixins/ParticleManagerMixin": {
+      "addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V": "Lnet/minecraft/class_702;addParticle(Lnet/minecraft/class_2394;DDDDDD)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/mccisland/enhanced/mixins/ParticleManagerMixin": {
+        "addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V": "Lnet/minecraft/class_702;addParticle(Lnet/minecraft/class_2394;DDDDDD)V"
+      }
+    }
+  }
+}
