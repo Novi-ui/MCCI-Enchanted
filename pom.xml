@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mccisland</groupId>
+    <artifactId>mcc-island-enhanced</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>MCC Island Enhanced</name>
+    <description>Mod Fabric para Minecraft - MCC Island Enhanced</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <fabric.version>0.14.21</fabric.version>
+        <minecraft.version>1.20.1</minecraft.version>
+        <yarn.mappings>1.20.1+build.10</yarn.mappings>
+    </properties>
+
+    <dependencies>
+        <!-- Fabric API -->
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>fabric-api</artifactId>
+            <version>${fabric.version}</version>
+        </dependency>
+        <!-- Minecraft (usado para compilar, não para distribuir) -->
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>minecraft</artifactId>
+            <version>${minecraft.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Yarn mappings -->
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>yarn</artifactId>
+            <version>${yarn.mappings}</version>
+            <classifier>v2</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/client/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
