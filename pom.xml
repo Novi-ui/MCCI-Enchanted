@@ -1,12 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>com.mccisland</groupId>
     <artifactId>mcc-island-enhanced</artifactId>
     <version>1.0.0</version>
     <name>MCC Island Enhanced</name>
-    <description>Mod Fabric para Minecraft 1.21.4</description>
+    <description>Enhanced competitive features and quality of life improvements for MCC Island</description>
+    
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -16,14 +19,45 @@
         <loader.version>0.16.9</loader.version>
         <fabric.version>0.110.0+1.21.4</fabric.version>
         <modmenu.version>11.0.3</modmenu.version>
+        <loom.version>1.7-SNAPSHOT</loom.version>
     </properties>
+    
     <repositories>
+        <repository>
+            <id>minecraft</id>
+            <name>Minecraft Libraries</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+        <repository>
+            <id>fabric</id>
+            <name>Fabric</name>
+            <url>https://maven.fabricmc.net/</url>
+        </repository>
         <repository>
             <id>terraformersmc</id>
             <name>TerraformersMC</name>
             <url>https://maven.terraformersmc.com/</url>
         </repository>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>Sonatype Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>fabric</id>
+            <name>Fabric</name>
+            <url>https://maven.fabricmc.net/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>sonatype-snapshots</id>
+            <name>Sonatype Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
     <dependencies>
         <dependency>
             <groupId>com.mojang</groupId>
@@ -34,7 +68,8 @@
         <dependency>
             <groupId>net.fabricmc</groupId>
             <artifactId>yarn</artifactId>
-            <version>${yarn.mappings}-v2</version>
+            <version>${yarn.mappings}:v2</version>
+            <classifier>v2</classifier>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -53,6 +88,7 @@
             <version>${modmenu.version}</version>
         </dependency>
     </dependencies>
+    
     <build>
         <sourceDirectory>src/client/java</sourceDirectory>
         <resources>
@@ -64,7 +100,30 @@
                 </includes>
             </resource>
         </resources>
+        
         <plugins>
+            <plugin>
+                <groupId>net.fabricmc</groupId>
+                <artifactId>fabric-loom</artifactId>
+                <version>${loom.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <minecraft>
+                        <version>${minecraft.version}</version>
+                    </minecraft>
+                    <mappings>
+                        <mappings>net.fabricmc:yarn:${yarn.mappings}:v2</mappings>
+                    </mappings>
+                    <mods>
+                        <mod>
+                            <name>mcc-island-enhanced</name>
+                            <sourceSet>main</sourceSet>
+                            <sourceSet>client</sourceSet>
+                        </mod>
+                    </mods>
+                </configuration>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -74,6 +133,16 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -83,13 +152,26 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
-                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         <manifestEntries>
                             <Implementation-Title>${project.name}</Implementation-Title>
                             <Implementation-Version>${project.version}</Implementation-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
