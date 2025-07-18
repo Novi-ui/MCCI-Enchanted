@@ -3,7 +3,7 @@ package com.mccisland.enhanced.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mccisland.enhanced.MCCIslandEnhancedClient;
-import net.fabricmc.loader.api.FabricLoader;
+import com.mccisland.enhanced.stubs.MinecraftStubs;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public class ModConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("mcc-island-enhanced.json");
+    private static final Path CONFIG_PATH = getConfigPath();
     
     // General settings
     public boolean modEnabled = true;
@@ -50,6 +50,19 @@ public class ModConfig {
             }
         } else {
             save(); // Create default config
+        }
+    }
+    
+    private static Path getConfigPath() {
+        try {
+            // Try to get the real config directory if FabricLoader is available
+            Class<?> fabricLoaderClass = Class.forName("net.fabricmc.loader.api.FabricLoader");
+            Object fabricLoader = fabricLoaderClass.getMethod("getInstance").invoke(null);
+            Object configDir = fabricLoaderClass.getMethod("getConfigDir").invoke(fabricLoader);
+            return ((Path) configDir).resolve("mcc-island-enhanced.json");
+        } catch (Exception e) {
+            // Fallback to current directory if FabricLoader is not available (during compilation)
+            return Path.of("mcc-island-enhanced.json");
         }
     }
     

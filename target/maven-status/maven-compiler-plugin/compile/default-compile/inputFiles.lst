@@ -2,6 +2,7 @@
 /workspace/src/client/java/com/mccisland/enhanced/features/games/AceRaceFeature.java
 /workspace/src/client/java/com/mccisland/enhanced/config/NameTagSettings.java
 /workspace/src/client/java/com/mccisland/enhanced/mixins/WorldRendererMixin.java
+/workspace/src/client/java/com/mccisland/enhanced/stubs/MinecraftStubs.java
 /workspace/src/client/java/com/mccisland/enhanced/render/HudRenderer.java
 /workspace/src/client/java/com/mccisland/enhanced/compat/MinecraftCompat.java
 /workspace/src/client/java/com/mccisland/enhanced/input/KeyBindings.java
