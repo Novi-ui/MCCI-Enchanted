@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "mcc-island-enhanced",
+  "version": "1.0.0",
+  "name": "MCC Island Enhanced",
+  "description": "Enhanced competitive features and quality of life improvements for MCC Island",
+  "authors": [
+    "MCCIslandEnhanced Team"
+  ],
+  "contact": {
+    "homepage": "https://github.com/mccisland/enhanced",
+    "sources": "https://github.com/mccisland/enhanced"
+  },
+  "license": "MIT",
+  "icon": "assets/mcc-island-enhanced/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.mccisland.enhanced.MCCIslandEnhancedClient"
+    ],
+    "modmenu": [
+      "com.mccisland.enhanced.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "mcc-island-enhanced.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "suggests": {
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": ["client"],
+      "parent": {
+        "id": "fabric-api",
+        "name": "Fabric API"
+      }
+    }
+  }
+}
