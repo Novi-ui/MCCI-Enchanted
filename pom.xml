@@ -14,6 +14,12 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- Minecraft and Fabric versions -->
+        <minecraft.version>1.21.1</minecraft.version>
+        <fabric.loader.version>0.16.0</fabric.loader.version>
+        <fabric.api.version>0.102.0+1.21.1</fabric.api.version>
+        <mixin.version>0.8.5</mixin.version>
     </properties>
     
     <repositories>
@@ -26,6 +32,11 @@
             <id>sponge</id>
             <name>Sponge Maven Repository</name>
             <url>https://repo.spongepowered.org/maven</url>
+        </repository>
+        <repository>
+            <id>fabric</id>
+            <name>Fabric Maven Repository</name>
+            <url>https://maven.fabricmc.net/</url>
         </repository>
     </repositories>
     
@@ -55,7 +66,7 @@
         <dependency>
             <groupId>org.spongepowered</groupId>
             <artifactId>mixin</artifactId>
-            <version>0.8.5</version>
+            <version>${mixin.version}</version>
         </dependency>
         
         <!-- ASM for bytecode manipulation (required by Mixin) -->
@@ -80,13 +91,17 @@
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>24.0.1</version>
-            <scope>provided</scope>
         </dependency>
         
-        <!-- LWJGL for OpenGL and input handling -->
+        <!-- LWJGL for OpenGL operations -->
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
+            <version>3.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-opengl</artifactId>
             <version>3.3.3</version>
         </dependency>
         
@@ -96,21 +111,31 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.13.0</version>
         </dependency>
+        
+        <!-- JOML for math operations -->
+        <dependency>
+            <groupId>org.joml</groupId>
+            <artifactId>joml</artifactId>
+            <version>1.10.5</version>
+        </dependency>
     </dependencies>
     
     <build>
-        <sourceDirectory>src/client/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
-        
         <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <encoding>UTF-8</encoding>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+            
+            <!-- Build Helper Plugin to add client source directory -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -124,29 +149,14 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src/main/java</source>
+                                <source>src/client/java</source>
                             </sources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
-                    <release>21</release>
-                    <encoding>UTF-8</encoding>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                        <arg>-Xlint:unchecked</arg>
-                        <arg>-Xlint:deprecation</arg>
-                    </compilerArgs>
-                    <failOnError>false</failOnError>
-                </configuration>
-            </plugin>
-            
+            <!-- Maven Resources Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -156,6 +166,7 @@
                 </configuration>
             </plugin>
             
+            <!-- Maven JAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -163,25 +174,34 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.mccisland.enhanced.MCCIslandEnhancedClient</mainClass>
                         </manifest>
-                        <manifestEntries>
-                            <Implementation-Title>${project.name}</Implementation-Title>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
             
+            <!-- Maven Assembly Plugin for creating mod JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.mccisland.enhanced.MCCIslandEnhancedClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>

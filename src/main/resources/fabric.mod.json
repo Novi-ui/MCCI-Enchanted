@@ -26,9 +26,9 @@
     "mcc-island-enhanced.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": ">=0.14.0",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": ">=1.19.4 <=1.21.7"
   },
   "suggests": {
     "modmenu": "*"

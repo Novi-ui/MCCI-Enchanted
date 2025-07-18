@@ -3,6 +3,7 @@
 /workspace/src/client/java/com/mccisland/enhanced/config/NameTagSettings.java
 /workspace/src/client/java/com/mccisland/enhanced/mixins/WorldRendererMixin.java
 /workspace/src/client/java/com/mccisland/enhanced/render/HudRenderer.java
+/workspace/src/client/java/com/mccisland/enhanced/compat/MinecraftCompat.java
 /workspace/src/client/java/com/mccisland/enhanced/input/KeyBindings.java
 /workspace/src/client/java/com/mccisland/enhanced/features/games/SkyBattleFeature.java
 /workspace/src/client/java/com/mccisland/enhanced/config/HudSettings.java
@@ -28,6 +29,7 @@
 /workspace/src/client/java/com/mccisland/enhanced/mixins/ParticleManagerMixin.java
 /workspace/src/client/java/com/mccisland/enhanced/mixins/ClientPlayerEntityMixin.java
 /workspace/src/client/java/com/mccisland/enhanced/mixins/GameRendererMixin.java
+/workspace/src/client/java/com/mccisland/enhanced/util/MinecraftVersionUtil.java
 /workspace/src/client/java/com/mccisland/enhanced/config/TGTTOSSettings.java
 /workspace/src/client/java/com/mccisland/enhanced/util/TeamUtils.java
 /workspace/src/client/java/com/mccisland/enhanced/config/BattleBoxSettings.java
