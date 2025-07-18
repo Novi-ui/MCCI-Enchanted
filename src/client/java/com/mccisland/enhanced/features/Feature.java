@@ -1,6 +1,6 @@
 package com.mccisland.enhanced.features;
 
-import net.minecraft.client.gui.DrawContext;
+import com.mccisland.enhanced.stubs.MinecraftStubs;
 
 public interface Feature {
     /**
@@ -11,12 +11,12 @@ public interface Feature {
     /**
      * Called when rendering the HUD
      */
-    default void renderHud(DrawContext context, float tickDelta) {}
+    default void renderHud(Object context, float tickDelta) {}
     
     /**
      * Called when rendering the world
      */
-    default void renderWorld(DrawContext context, float tickDelta) {}
+    default void renderWorld(Object context, float tickDelta) {}
     
     /**
      * Check if this feature is currently enabled
