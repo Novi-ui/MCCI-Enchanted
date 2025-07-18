@@ -17,9 +17,6 @@
   "entrypoints": {
     "client": [
       "com.mccisland.enhanced.MCCIslandEnhancedClient"
-    ],
-    "modmenu": [
-      "com.mccisland.enhanced.config.ModMenuIntegration"
     ]
   },
   "mixins": [

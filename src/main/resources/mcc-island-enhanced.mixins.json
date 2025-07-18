@@ -5,11 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "mcc-island-enhanced.refmap.json",
   "client": [
-    "ParticleManagerMixin",
-    "GameRendererMixin",
-    "InGameHudMixin",
-    "ClientPlayerEntityMixin",
-    "WorldRendererMixin"
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 0
