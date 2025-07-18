@@ -38,9 +38,49 @@
             <name>Fabric Maven Repository</name>
             <url>https://maven.fabricmc.net/</url>
         </repository>
+        <repository>
+            <id>minecraft</id>
+            <name>Minecraft Libraries</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+        <repository>
+            <id>mojang</id>
+            <name>Mojang Maven</name>
+            <url>https://maven.mojang.com/</url>
+        </repository>
     </repositories>
     
     <dependencies>
+        <!-- Fabric Loader -->
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>fabric-loader</artifactId>
+            <version>${fabric.loader.version}</version>
+        </dependency>
+        
+        <!-- Fabric API -->
+        <dependency>
+            <groupId>net.fabricmc.fabric-api</groupId>
+            <artifactId>fabric-api</artifactId>
+            <version>${fabric.api.version}</version>
+        </dependency>
+        
+        <!-- Minecraft client (mapped) -->
+        <dependency>
+            <groupId>net.minecraft</groupId>
+            <artifactId>minecraft</artifactId>
+            <version>${minecraft.version}</version>
+            <classifier>client</classifier>
+        </dependency>
+        
+        <!-- Yarn mappings -->
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>yarn</artifactId>
+            <version>${minecraft.version}+build.10</version>
+            <classifier>v2</classifier>
+        </dependency>
+        
         <!-- Google Guava for collections and utilities -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -101,6 +141,14 @@
         </dependency>
     </dependencies>
     
+    <pluginRepositories>
+        <pluginRepository>
+            <id>fabric</id>
+            <name>Fabric Maven Repository</name>
+            <url>https://maven.fabricmc.net/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
     <build>
         <plugins>
             <!-- Maven Compiler Plugin -->
@@ -113,6 +161,22 @@
                     <target>21</target>
                     <encoding>UTF-8</encoding>
                     <failOnError>false</failOnError>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            
+            <!-- Fabric Loom Plugin for Minecraft development -->
+            <plugin>
+                <groupId>net.fabricmc</groupId>
+                <artifactId>fabric-loom</artifactId>
+                <version>1.4-SNAPSHOT</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <minecraftVersion>${minecraft.version}</minecraftVersion>
+                    <mappings>yarn:${minecraft.version}+build.10:v2</mappings>
+                    <loaderVersion>${fabric.loader.version}</loaderVersion>
                 </configuration>
             </plugin>
             
